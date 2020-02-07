@@ -1,10 +1,10 @@
 package br.com.alura.forum.controller.dto;
 
-public class ErrorMessageDTO {
+public class ErrorMesageDTO {
     private String campo;
     private String erro;
 
-    public ErrorMessageDTO(String campo, String erro) {
+    public ErrorMesageDTO(String campo, String erro) {
         this.campo = campo;
         this.erro = erro;
     }

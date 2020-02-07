@@ -1,6 +1,6 @@
-package br.com.alura.forum.validation;
+package br.com.alura.forum.controller.validation;
 
-import br.com.alura.forum.controller.dto.ErrorMessageDTO;
+import br.com.alura.forum.controller.dto.ErrorMesageDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -22,13 +22,13 @@ public class ErrorValidationHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public List<ErrorMessageDTO> handle(MethodArgumentNotValidException exception) {
-        List<ErrorMessageDTO> errosFormularioDto = new ArrayList<>();
+    public List<ErrorMesageDTO> handle(MethodArgumentNotValidException exception) {
+        List<ErrorMesageDTO> errosFormularioDto = new ArrayList<>();
         List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
 
         fieldErrors.forEach(e -> {
             String mensagem = messageSource.getMessage(e, LocaleContextHolder.getLocale());
-            ErrorMessageDTO erro = new ErrorMessageDTO(e.getField(), mensagem);
+            ErrorMesageDTO erro = new ErrorMesageDTO(e.getField(), mensagem);
             errosFormularioDto.add(erro);
         });
 
